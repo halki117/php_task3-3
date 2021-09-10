@@ -7,14 +7,14 @@ function dbConnection(){
   $user = 'root';
   $password = 'root';
   $options = array(
-          // SQL実行失敗時に例外をスロー
-          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-          // デフォルトフェッチモードを連想配列形式に設定
-          PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-          // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-          // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-          PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-      );
+        // SQL実行失敗時に例外をスロー
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        // デフォルトフェッチモードを連想配列形式に設定
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
+        // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+    );
 
   // PDOオブジェクト生成（DBへ接続）してretun文で返す
   return  new PDO($dsn, $user, $password, $options);
@@ -38,7 +38,7 @@ if(!empty($_POST['submit_create'])){
   //プレースホルダに値をセットし、SQL文を実行
   $stmt->execute(array(':name' => $name, ':content' => $content ));
 
-  header("Location:php3-2sub.php");
+  header("Location:php3-3sub.php");
 }
 
 
@@ -88,7 +88,7 @@ if($delete_id){
   //プレースホルダに値をセットし、SQL文を実行
   $stmt->execute();
 
-  header("Location:php3-2deleted.php");
+  header("Location:php3-3deleted.php");
 }
 
 
@@ -101,7 +101,7 @@ if($delete_id){
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>php3-1</title>
+  <title>php3-3</title>
 </head>
 <body>
   <h1>掲示板</h1>
@@ -126,8 +126,9 @@ if($delete_id){
               <p >No: <?php echo $i ;?></p>
               <p>名前: <?php echo $post['name']; ?></p>
               <p>投稿内容: <?php echo $post['content'] ?></p>
+              <p><a href="php3-3edit.php?id=<?php echo $post['id']; ?>"><button >編集</button></a></p>
               <form method="post">
-                <button type="submit"  name="submit_delete" value= "<?php echo $post['id']?>" placeholder="削除">削除</button>
+                <p><button type="submit"  name="submit_delete" value= "<?php echo $post['id']; ?>" placeholder="削除">削除</button></p>
               </form>
             </div>
       
