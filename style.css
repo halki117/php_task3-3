@@ -1,0 +1,9 @@
+.post{
+  border: 10px double skyblue;
+  margin-bottom: 20px;
+  padding-left: 15px;
+}
+
+button.back{
+  height: 25px;
+}
